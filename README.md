@@ -1,262 +1,113 @@
-<h1>
-callapro-react-native-widget
-</h1>
+# CallAPro React-Native Widget
 
-![](https://img.shields.io/npm/v/@callapro/react-native-widget?style=flat)
-![](https://img.shields.io/npm/dt/@callapro/react-native-widget.svg)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-![](https://img.shields.io/npm/l/@callapro/@callapro/react-native-widget)
+Integrate CallAPro live-chat into any React Native app in minutes.  
+100 % white-label — no extra branding.
 
-- **Supported CallAPro version:** 2.16.0+
+---
 
+## 📦 Installation
 
-### Installation
+~~~bash
+# with npm
+npm install @callapro/react-native-widget \
+            react-native-webview \
+            @react-native-async-storage/async-storage
 
-Install the library using either yarn or npm like so:
+# with yarn
+yarn add @callapro/react-native-widget \
+         react-native-webview \
+         @react-native-async-storage/async-storage
+~~~
 
-```sh
-yarn add @callapro/react-native-widget
-```
+> **iOS (bare workflow)**
+> 
+> ~~~bash
+> cd ios && pod install
+> ~~~
 
-OR
+---
 
-```sh
-npm install --save @callapro/react-native-widget
-```
+## 🚀 Quick Start
 
-This library depends on [react-native-webview](https://www.npmjs.com/package/react-native-webview) and [async-storage](https://github.com/react-native-async-storage/async-storage). Please follow the instructions provided in the docs.
-
-### iOS Installation
-
-If you're using React Native versions > 60.0, it's relatively straightforward.
-
-```sh
-cd ios && pod install
-```
-
-### How to use
-
-1. Create a website channel in CallAPro server by following the steps described here https://www.callapro.com/docs/channels/website
-2. Replace `websiteToken` prop and `baseUrl`
-
-```
-
+~~~jsx
 import React, { useState } from 'react';
-
-import { StyleSheet, View, SafeAreaView, TouchableOpacity, Text } from 'react-native';
-
+import { SafeAreaView, TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import CallAProWidget from '@callapro/react-native-widget';
 
-const App = () => {
-  const [showWidget, toggleWidget] = useState(false);
+export default function App() {
+  const [visible, setVisible] = useState(false);
+
+  /* Optional: personalise the chat */
   const user = {
-    identifier: 'john@gmail.com',
-    name: 'John Samuel',
+    identifier: 'user@example.com',
+    name: 'Jane Doe',
+    email: 'user@example.com',
     avatar_url: '',
-    email: 'john@gmail.com',
-    identifier_hash: '',
   };
-  const customAttributes = { accountId: 1, pricingPlan: 'paid', status: 'active' };
-  const websiteToken = 'WEBSITE_TOKEN';
-  const baseUrl = 'CALLAPRO_INSTALLATION_URL';
-  const locale = 'en';
-  const colorScheme='dark'
+
+  const customAttributes = { plan: 'pro', accountStatus: 'active' };
+
+  /* Replace these two values for each client/project */
+  const websiteToken = 'PASTE_YOUR_CHANNEL_TOKEN';
+  const baseUrl      = 'https://chatguru.callapro.ai';
 
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <TouchableOpacity style={styles.button} onPress={() => toggleWidget(true)}>
-          <Text style={styles.buttonText}>Open widget</Text>
+        <TouchableOpacity style={styles.button} onPress={() => setVisible(true)}>
+          <Text style={styles.buttonText}>Chat with us</Text>
         </TouchableOpacity>
       </View>
-      {
-        showWidget&&
-          <CallAProWidget
-            websiteToken={websiteToken}
-            locale={locale}
-            baseUrl={baseUrl}
-            closeModal={() => toggleWidget(false)}
-            isModalVisible={showWidget}
-            user={user}
-            customAttributes={customAttributes}
-            colorScheme={colorScheme}
-          />
-      }
 
+      {visible && (
+        <CallAProWidget
+          websiteToken={websiteToken}
+          baseUrl={baseUrl}
+          isModalVisible={visible}
+          closeModal={() => setVisible(false)}
+          user={user}
+          customAttributes={customAttributes}
+          locale="en"
+          colorScheme="auto"
+        />
+      )}
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  button: {
-    height: 48,
-    marginTop: 32,
-    paddingTop: 8,
-    paddingBottom: 8,
-    backgroundColor: '#1F93FF',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#fff',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    textAlign: 'center',
-    paddingLeft: 10,
-    fontWeight: '600',
-    fontSize: 16,
-    paddingRight: 10,
-  },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  button:    { backgroundColor: '#1F93FF', borderRadius: 8, padding: 12 },
+  buttonText:{ color: '#FFF', fontSize: 16 },
 });
+~~~
 
-export default App;
+---
 
-```
+## ⚙️ Prop Reference
 
-You're done!
+| Prop               | Type   | Required | Default | Description                                                                  |
+| ------------------ | ------ | -------- | ------- | ---------------------------------------------------------------------------- |
+| `baseUrl`          | string | **Yes**  | —       | URL of your CallAPro installation (`https://chatguru.callapro.ai`)           |
+| `websiteToken`     | string | **Yes**  | —       | Channel token (see below)                                                    |
+| `isModalVisible`   | bool   | **Yes**  | `false` | Controls widget visibility                                                   |
+| `closeModal`       | func   | **Yes**  | —       | Callback to hide the widget                                                  |
+| `user`             | object | No       | `{}`    | User info (`identifier`, `email`, `name`, etc.)                              |
+| `customAttributes` | object | No       | `{}`    | Extra key-value metadata                                                     |
+| `locale`           | string | No       | `"en"`  | Two-letter language code                                                     |
+| `colorScheme`      | `"light" \| "dark" \| "auto"` | No | `"auto"` | Force light, dark, or follow system                                          |
 
-The whole example is in the `/example` folder.
+---
 
-### Props
+## 🔑 Getting the Website Token
 
-<table class="table">
-<thead><tr>
-  <th>Name</th><th>Default</th><th>Type</th><th>Description</th>
-</tr></thead>
-<tbody>
-  <tr>
-    <td>baseUrl</td>
-    <td> - </td>
-    <td> String </td>
-    <td>CallAPro installation URL</td>
-  </tr>
- <tr>
-    <td>websiteToken</td>
-    <td> - </td>
-    <td> String </td>
-    <td>Website channel token</td>
-  </tr>
-  <tr>
-    <td>colorScheme</td>
-    <td> light </td>
-    <td> String </td>
-    <td>Widget color scheme (light/dark/auto)</td>
-  </tr>
-   <tr>
-    <td>locale</td>
-    <td> en </td>
-    <td> String </td>
-    <td>Locale</td>
-  </tr>
-  <tr>
-    <td>isModalVisible</td>
-    <td> false </td>
-    <td> Boolean </td>
-    <td>Widget is visible or not</td>
-  </tr>
-    <tr>
-    <td>closeModal</td>
-    <td> - </td>
-    <td> Function </td>
-    <td>Close event</td>
-  </tr>
-  <tr>
-	  <td>user</td>
-    <td> {} </td>
-    <td> Object </td>
-    <td>User information about the user like email, username and avatar_url</td>
-  </tr>
-  <tr>
-   <td>customAttributes</td>
-    <td> {} </td>
-    <td> Object </td>
-    <td>Additional information about the customer</td>
-  </tr>
- </tbody>
-</table>
+1. Log in to **CallAPro Dashboard**.  
+2. Navigate to **Channels → Website**.  
+3. Create or select your channel.  
+4. Copy the **Website Token** and paste it into `websiteToken`.
 
-### CI/CD Pipeline and npm Publishing
+---
 
-This project uses GitHub Actions to automate the CI/CD pipeline for publishing to npm.
+## 🤝 Need help?
 
-#### Setting up the GitHub Actions workflow
-
-1. Create a `.github/workflows/publish.yml` file in your repository with the following content:
-
-```yaml
-name: Publish to npm
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Publish to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-```
-
-#### Configuring npm authentication
-
-1. Create an `.npmrc` file in the root of your repository with the following content:
-
-```
-//registry.npmjs.org/:_authToken=${NPM_TOKEN}
-```
-
-2. Add your npm token to the repository secrets:
-
-   - Go to your repository on GitHub.
-   - Click on `Settings`.
-   - Click on `Secrets` in the left sidebar.
-   - Click on `New repository secret`.
-   - Add a new secret with the name `NPM_TOKEN` and your npm token as the value.
-
-## Feedback & Contributing
-
-Feel free to send us feedback on [Twitter](https://twitter.com/callaproapp) or [file an issue](https://github.com/callapro/callapro-mobile-app/issues).
-
-If there's anything you'd like to chat about, please feel free to join our [Discord](https://discord.gg/cJXdrwS) chat!
-
-_CallAPro_ &copy; 2017-2023, CallAPro Inc - Released under the MIT License.
+Email **contact@callapro.ai** and we’ll get you sorted. Happy chatting! 🎉
