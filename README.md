@@ -182,6 +182,78 @@ The whole example is in the `/example` folder.
  </tbody>
 </table>
 
+### CI/CD Pipeline and npm Publishing
+
+This project uses GitHub Actions to automate the CI/CD pipeline for publishing to npm.
+
+#### Setting up the GitHub Actions workflow
+
+1. Create a `.github/workflows/publish.yml` file in your repository with the following content:
+
+```yaml
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+#### Configuring npm authentication
+
+1. Create an `.npmrc` file in the root of your repository with the following content:
+
+```
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
+```
+
+2. Add your npm token to the repository secrets:
+
+   - Go to your repository on GitHub.
+   - Click on `Settings`.
+   - Click on `Secrets` in the left sidebar.
+   - Click on `New repository secret`.
+   - Add a new secret with the name `NPM_TOKEN` and your npm token as the value.
+
 ## Feedback & Contributing
 
 Feel free to send us feedback on [Twitter](https://twitter.com/callaproapp) or [file an issue](https://github.com/callapro/callapro-mobile-app/issues).
