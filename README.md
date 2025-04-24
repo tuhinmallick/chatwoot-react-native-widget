@@ -14,7 +14,6 @@ Click on the tabs below to switch between English and German versions of the REA
 # CallAPro React-Native Widget
 
 Integrate CallAPro live-chat into any React Native app in minutes.  
-100 % white-label — no extra branding.
 
 ---
 
@@ -167,7 +166,6 @@ Email **contact@callapro.ai** and we’ll get you sorted. Happy chatting! 🎉
 # CallAPro React-Native Widget
 
 Integrieren Sie CallAPro Live-Chat in jede React Native App in Minuten.  
-100 % White-Label — keine zusätzliche Markenkennzeichnung.
 
 ---
 
