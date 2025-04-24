@@ -197,6 +197,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -237,6 +238,16 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
+
+#### Manually triggering the GitHub Actions workflow
+
+To manually trigger the GitHub Actions workflow, follow these steps:
+
+1. Go to your repository on GitHub.
+2. Click on the `Actions` tab.
+3. Select the workflow you want to run from the left sidebar.
+4. Click on the `Run workflow` button.
+5. Select the branch you want to run the workflow on and click the `Run workflow` button again.
 
 #### Configuring npm authentication
 
