@@ -53,5 +53,12 @@
     "url": "https://github.com/callapro/callapro-react-native-widget/issues"
   },
   "homepage": "https://github.com/callapro/callapro-react-native-widget#readme",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "index.js",
+    "src"
+  ]
 }
