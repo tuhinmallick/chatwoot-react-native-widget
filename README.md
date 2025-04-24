@@ -182,6 +182,20 @@ The whole example is in the `/example` folder.
  </tbody>
 </table>
 
+### Automated Publishing
+
+This repository is configured to automatically publish the package to npm whenever there is a push to the main branch. The publishing process is handled by a GitHub Actions workflow defined in the `.github/workflows/publish.yml` file.
+
+### Setting up npm token
+
+To enable the automated publishing process, you need to set up an npm token in the repository secrets. Follow these steps:
+
+1. Generate an npm token by running `npm token create` and follow the prompts to create a new token.
+2. Go to the GitHub repository and navigate to `Settings` > `Secrets` > `Actions`.
+3. Click on `New repository secret` and add a new secret with the name `NPM_TOKEN` and the value set to the npm token you generated in step 1.
+
+With this setup, the package will be automatically published to npm whenever there is a push to the main branch.
+
 ## Feedback & Contributing
 
 Feel free to send us feedback on [Twitter](https://twitter.com/callaproapp) or [file an issue](https://github.com/callapro/callapro-mobile-app/issues).
