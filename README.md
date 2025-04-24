@@ -1,13 +1,13 @@
 <h1>
-chatwoot-react-native-widget
+callapro-react-native-widget
 </h1>
 
-![](https://img.shields.io/npm/v/@chatwoot/react-native-widget?style=flat)
-![](https://img.shields.io/npm/dt/@chatwoot/react-native-widget.svg)
+![](https://img.shields.io/npm/v/@callapro/react-native-widget?style=flat)
+![](https://img.shields.io/npm/dt/@callapro/react-native-widget.svg)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-![](https://img.shields.io/npm/l/@chatwoot/@chatwoot/react-native-widget)
+![](https://img.shields.io/npm/l/@callapro/@callapro/react-native-widget)
 
-- **Supported Chatwoot version:** 2.16.0+
+- **Supported CallAPro version:** 2.16.0+
 
 <img src="https://user-images.githubusercontent.com/12408980/203909820-938136a6-bf5b-433e-9f68-d7f28a1303be.png" alt="screenshot" width="350">
 
@@ -16,13 +16,13 @@ chatwoot-react-native-widget
 Install the library using either yarn or npm like so:
 
 ```sh
-yarn add @chatwoot/react-native-widget
+yarn add @callapro/react-native-widget
 ```
 
 OR
 
 ```sh
-npm install --save @chatwoot/react-native-widget
+npm install --save @callapro/react-native-widget
 ```
 
 This library depends on [react-native-webview](https://www.npmjs.com/package/react-native-webview) and [async-storage](https://github.com/react-native-async-storage/async-storage). Please follow the instructions provided in the docs.
@@ -37,7 +37,7 @@ cd ios && pod install
 
 ### How to use
 
-1. Create a website channel in chatwoot server by following the steps described here https://www.chatwoot.com/docs/channels/website
+1. Create a website channel in CallAPro server by following the steps described here https://www.callapro.com/docs/channels/website
 2. Replace `websiteToken` prop and `baseUrl`
 
 ```
@@ -46,7 +46,7 @@ import React, { useState } from 'react';
 
 import { StyleSheet, View, SafeAreaView, TouchableOpacity, Text } from 'react-native';
 
-import ChatWootWidget from '@chatwoot/react-native-widget';
+import CallAProWidget from '@callapro/react-native-widget';
 
 const App = () => {
   const [showWidget, toggleWidget] = useState(false);
@@ -59,7 +59,7 @@ const App = () => {
   };
   const customAttributes = { accountId: 1, pricingPlan: 'paid', status: 'active' };
   const websiteToken = 'WEBSITE_TOKEN';
-  const baseUrl = 'CHATWOOT_INSTALLATION_URL';
+  const baseUrl = 'CALLAPRO_INSTALLATION_URL';
   const locale = 'en';
   const colorScheme='dark'
 
@@ -72,7 +72,7 @@ const App = () => {
       </View>
       {
         showWidget&&
-          <ChatWootWidget
+          <CallAProWidget
             websiteToken={websiteToken}
             locale={locale}
             baseUrl={baseUrl}
@@ -135,7 +135,7 @@ The whole example is in the `/example` folder.
     <td>baseUrl</td>
     <td> - </td>
     <td> String </td>
-    <td>Chatwoot installation URL</td>
+    <td>CallAPro installation URL</td>
   </tr>
  <tr>
     <td>websiteToken</td>
@@ -184,8 +184,8 @@ The whole example is in the `/example` folder.
 
 ## Feedback & Contributing
 
-Feel free to send us feedback on [Twitter](https://twitter.com/chatwootapp) or [file an issue](https://github.com/chatwoot/chatwoot-mobile-app/issues).
+Feel free to send us feedback on [Twitter](https://twitter.com/callaproapp) or [file an issue](https://github.com/callapro/callapro-mobile-app/issues).
 
 If there's anything you'd like to chat about, please feel free to join our [Discord](https://discord.gg/cJXdrwS) chat!
 
-_Chatwoot_ &copy; 2017-2023, Chatwoot Inc - Released under the MIT License.
+_CallAPro_ &copy; 2017-2023, CallAPro Inc - Released under the MIT License.

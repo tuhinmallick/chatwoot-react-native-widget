@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ChatWootWidget from '@chatwoot/react-native-widget';
+import CallAProWidget from '@chatwoot/react-native-widget';
 
 import {
   SafeAreaView,
@@ -74,10 +74,10 @@ const App = () => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => toggleWidget(true)}>
-          <Text style={styles.buttonText}>Open Chatwoot Widget</Text>
+          <Text style={styles.buttonText}>Open CallAPro Widget</Text>
         </TouchableOpacity>
       </View>
-      <ChatWootWidget
+      <CallAProWidget
         websiteToken={websiteToken}
         locale={locale}
         baseUrl={baseUrl}

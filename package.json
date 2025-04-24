@@ -1,7 +1,7 @@
 {
-  "name": "@chatwoot/react-native-widget",
+  "name": "@callapro/react-native-widget",
   "version": "0.0.21",
-  "description": "React Native widget for Chatwoot",
+  "description": "React Native widget for CallAPro",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
@@ -40,18 +40,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chatwoot/chatwoot-react-native-widget.git"
+    "url": "git+https://github.com/callapro/callapro-react-native-widget.git"
   },
   "keywords": [
     "react-native",
-    "chatwoot",
+    "callapro",
     "mobile",
     "ios",
     "android"
   ],
   "bugs": {
-    "url": "https://github.com/chatwoot/chatwoot-react-native-widget/issues"
+    "url": "https://github.com/callapro/callapro-react-native-widget/issues"
   },
-  "homepage": "https://github.com/chatwoot/chatwoot-react-native-widget#readme",
+  "homepage": "https://github.com/callapro/callapro-react-native-widget#readme",
   "license": "MIT"
 }
