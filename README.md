@@ -457,3 +457,54 @@ Senden Sie eine E-Mail an **contact@callapro.ai** und wir helfen Ihnen weiter. V
 5. **Bleiben Sie auf dem neuesten Stand**: Halten Sie das Widget und seine Abhängigkeiten auf dem neuesten Stand, um von den neuesten Funktionen und Sicherheitsupdates zu profitieren.
 
 </details>
+
+---
+
+## Customizing the Widget
+
+You can customize the CallAPro widget by providing user information, custom attributes, locale, and color scheme.
+
+### User Information
+
+You can personalize the chat by providing user information such as `identifier`, `name`, `email`, and `avatar_url`.
+
+```jsx
+const user = {
+  identifier: 'user@example.com',
+  name: 'Jane Doe',
+  email: 'user@example.com',
+  avatar_url: '',
+};
+```
+
+### Custom Attributes
+
+You can add custom attributes to the widget by providing a `customAttributes` object.
+
+```jsx
+const customAttributes = { plan: 'pro', accountStatus: 'active' };
+```
+
+### Locale
+
+You can set the language for the widget using the `locale` prop. The default value is `"en"`.
+
+```jsx
+<CallAProWidget
+  ...
+  locale="en"
+/>
+```
+
+### Color Scheme
+
+You can customize the color scheme of the widget using the `colorScheme` prop. The available options are `"light"`, `"dark"`, and `"auto"`. The default value is `"auto"`.
+
+```jsx
+<CallAProWidget
+  ...
+  colorScheme="auto"
+/>
+```
+
+For more details, refer to the `Example/App.js` file.
