@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import CallAProWidget from '@chatwoot/react-native-widget';
+import CallAProWidget from '@callapro/react-native-widget';
 
 import {
   SafeAreaView,
