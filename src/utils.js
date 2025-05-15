@@ -18,8 +18,8 @@ export const isJsonString = (string) => {
 };
 
 export const createWootPostMessage = (object) => {
-  const stringfyObject = `'${WOOT_PREFIX}${JSON.stringify(object)}'`;
-  const script = `window.postMessage(${stringfyObject});`;
+  const stringfyObject = `${WOOT_PREFIX}${JSON.stringify(object)}`;
+  const script = `window.postMessage("${stringfyObject}");`;
   return script;
 };
 
@@ -47,7 +47,12 @@ export const generateScripts = ({ colorScheme, user, locale, customAttributes })
     script += createWootPostMessage(attributeObject);
   }
   if (colorScheme) {
-    const themeObject = { event: POST_MESSAGE_EVENTS.SET_COLOR_SCHEME, darkMode: colorScheme };
+    const isDarkMode = colorScheme === 'dark' || 
+      (colorScheme === 'auto' && appColorScheme === 'dark');
+    const themeObject = { 
+      event: POST_MESSAGE_EVENTS.SET_COLOR_SCHEME, 
+      darkMode: isDarkMode 
+    };
     script += createWootPostMessage(themeObject);
   }
   return script;

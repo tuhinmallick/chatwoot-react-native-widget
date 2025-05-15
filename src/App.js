@@ -21,7 +21,7 @@ const propTypes = {
   locale: PropTypes.string,
   colorScheme: PropTypes.oneOf(['dark', 'light', 'auto']),
   customAttributes: PropTypes.shape({}),
-  closeModal: PropTypes.func,
+  closeModal: PropTypes.func.isRequired,
 };
 
 const CallAProWidget = ({
