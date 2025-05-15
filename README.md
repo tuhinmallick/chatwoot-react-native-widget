@@ -71,18 +71,16 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      {visible && (
-        <CallAProWidget
-          websiteToken={websiteToken}
-          baseUrl={baseUrl}
-          isModalVisible={visible}
-          closeModal={() => setVisible(false)}
-          user={user}
-          customAttributes={customAttributes}
-          locale="en"
-          colorScheme="auto"
-        />
-      )}
+      <CallAProWidget
+        websiteToken={websiteToken}
+        baseUrl={baseUrl}
+        isModalVisible={visible}
+        closeModal={() => setVisible(false)}
+        user={user}
+        customAttributes={customAttributes}
+        locale="en"
+        colorScheme="auto"
+      />
     </SafeAreaView>
   );
 }
@@ -146,7 +144,7 @@ The `colorScheme` prop can be `"light"`, `"dark"`, or `"auto"`. This is optional
 
 ## 🤝 Need help?
 
-Email **contact@callapro.ai** and we’ll get you sorted. Happy chatting! 🎉
+Email **contact@callapro.ai** and we'll get you sorted. Happy chatting! 🎉
 
 ---
 
@@ -223,18 +221,16 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      {visible && (
-        <CallAProWidget
-          websiteToken={websiteToken}
-          baseUrl={baseUrl}
-          isModalVisible={visible}
-          closeModal={() => setVisible(false)}
-          user={user}
-          customAttributes={customAttributes}
-          locale="en"
-          colorScheme="auto"
-        />
-      )}
+      <CallAProWidget
+        websiteToken={websiteToken}
+        baseUrl={baseUrl}
+        isModalVisible={visible}
+        closeModal={() => setVisible(false)}
+        user={user}
+        customAttributes={customAttributes}
+        locale="en"
+        colorScheme="auto"
+      />
     </SafeAreaView>
   );
 }
