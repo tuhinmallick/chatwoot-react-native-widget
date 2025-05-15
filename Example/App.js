@@ -13,24 +13,30 @@ import {
 const App = () => {
   const [showWidget, toggleWidget] = useState(false);
   const [user, setUser] = useState({
-    identifier: 'sandra.lawrence@example.com',
-    name: 'Sandra Lawrence',
-    avatar_url: 'https://i.pravatar.cc/150?u=a042581f4e29026704d',
-    email: 'sandra.lawrence@example.com',
+    identifier: 'user@example.com',
+    name: 'John Doe',
+    avatar_url: 'https://i.pravatar.cc/150',
+    email: 'user@example.com',
     identifier_hash: '',
   });
   const customAttributes = {
-    accountId: 1,
-    pricingPlan: 'paid',
+    accountId: '123',
+    plan: 'pro',
     status: 'active',
   };
-  const websiteToken = 'RY3LaFtwmkPhDdZVmRd4ektW';
-  const baseUrl = 'https://staging.chatwoot.com';
+  const websiteToken = 'YOUR_WEBSITE_TOKEN';
+  const baseUrl = 'https://chatguru.callapro.ai';
   const [locale, setLocale] = useState('en');
+
+  const handleLanguageChange = (text) => {
+    setLocale(text);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View style={styles.form}>
+        <Text style={styles.title}>CallAPro Widget Demo</Text>
+        
         <Text style={styles.label}>Name</Text>
         <TextInput
           style={styles.input}
@@ -41,7 +47,9 @@ const App = () => {
             }))
           }
           value={user.name}
+          placeholder="John Doe"
         />
+
         <Text style={styles.label}>Email</Text>
         <TextInput
           style={styles.input}
@@ -53,13 +61,20 @@ const App = () => {
             }))
           }
           value={user.email}
+          placeholder="user@example.com"
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
+
         <Text style={styles.label}>Language</Text>
         <TextInput
           style={styles.input}
           value={locale}
-          onChangeText={() => setLocale(locale)}
+          onChangeText={handleLanguageChange}
+          placeholder="en"
+          autoCapitalize="none"
         />
+
         <Text style={styles.label}>Avatar</Text>
         <TextInput
           style={styles.input}
@@ -71,12 +86,14 @@ const App = () => {
           }
           value={user.avatar_url}
         />
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => toggleWidget(true)}>
-          <Text style={styles.buttonText}>Open CallAPro Widget</Text>
+          <Text style={styles.buttonText}>Open Chat Widget</Text>
         </TouchableOpacity>
       </View>
+
       <CallAProWidget
         websiteToken={websiteToken}
         locale={locale}
@@ -94,45 +111,51 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#fff',
   },
   modal: {
     flex: 1,
     paddingVertical: 32,
   },
-
+  form: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 24,
+  },
   button: {
     height: 48,
     marginTop: 32,
-    paddingTop: 8,
-    paddingBottom: 8,
     backgroundColor: '#1F93FF',
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#fff',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
-    textAlign: 'center',
-    paddingLeft: 10,
     fontWeight: '600',
     fontSize: 16,
-    paddingRight: 10,
   },
   label: {
     marginTop: 16,
+    marginBottom: 8,
+    fontSize: 14,
+    fontWeight: '500',
   },
   input: {
     height: 40,
-    width: 300,
-    borderColor: 'gray',
+    width: '100%',
+    borderColor: '#E5E7EB',
     borderWidth: 1,
-    marginTop: 8,
-    fontWeight: '600',
+    borderRadius: 6,
+    paddingHorizontal: 12,
     fontSize: 16,
-    color: 'gray',
+    color: '#1F2937',
   },
 });
 
