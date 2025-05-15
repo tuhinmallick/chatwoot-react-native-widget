@@ -66,6 +66,7 @@ const CallAProWidget = ({
           baseUrl={baseUrl}
           locale={locale}
           colorScheme={colorScheme}
+          appColorScheme={appColorScheme}
           customAttributes={customAttributes}
           closeModal={closeModal}
         />

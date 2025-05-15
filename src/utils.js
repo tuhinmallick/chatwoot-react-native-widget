@@ -25,7 +25,7 @@ export const createWootPostMessage = (object) => {
 
 export const getMessage = (data) => data.replace(WOOT_PREFIX, '');
 
-export const generateScripts = ({ colorScheme, user, locale, customAttributes }) => {
+export const generateScripts = ({ colorScheme, user, locale, customAttributes, appColorScheme }) => {
   let script = '';
   if (user) {
     const userObject = {
@@ -57,6 +57,7 @@ export const generateScripts = ({ colorScheme, user, locale, customAttributes })
   }
   return script;
 };
+
 export const storeHelper = {
   getCookie: async () => {
     const cookie = await AsyncStorage.getItem('cwCookie');
