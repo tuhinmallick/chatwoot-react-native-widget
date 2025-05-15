@@ -1,6 +1,6 @@
 {
   "name": "@callapro/react-native-widget",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "React Native widget for CallAPro",
   "main": "index.js",
   "scripts": {
