@@ -8,7 +8,6 @@ const propTypes = {
   baseUrl: PropTypes.string.isRequired,
   cwCookie: PropTypes.string,
   colorScheme: PropTypes.oneOf(['light', 'dark', 'auto']),
-  appColorScheme: PropTypes.string,
   user: PropTypes.shape({
     name: PropTypes.string,
     avatar_url: PropTypes.string,
@@ -23,12 +22,11 @@ const propTypes = {
 const WebViewComponent = ({
   baseUrl,
   websiteToken,
-  cwCookie = '',
-  locale = 'en',
-  colorScheme = 'light',
-  appColorScheme = 'light',
-  user = {},
-  customAttributes = {},
+  cwCookie,
+  locale,
+  colorScheme,
+  user,
+  customAttributes,
   closeModal,
 }) => {
   const [currentUrl, setCurrentUrl] = React.useState(null);
@@ -42,7 +40,6 @@ const WebViewComponent = ({
     locale,
     customAttributes,
     colorScheme,
-    appColorScheme,
   });
 
   const onShouldStartLoadWithRequest = (request) => {
@@ -108,5 +105,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
 WebViewComponent.propTypes = propTypes;
 export default WebViewComponent;

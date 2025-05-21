@@ -18,14 +18,14 @@ export const isJsonString = (string) => {
 };
 
 export const createWootPostMessage = (object) => {
-  const stringfyObject = `${WOOT_PREFIX}${JSON.stringify(object)}`;
-  const script = `window.postMessage("${stringfyObject}");`;
+  const stringfyObject = `'${WOOT_PREFIX}${JSON.stringify(object)}'`;
+  const script = `window.postMessage(${stringfyObject});`;
   return script;
 };
 
 export const getMessage = (data) => data.replace(WOOT_PREFIX, '');
 
-export const generateScripts = ({ colorScheme, user, locale, customAttributes, appColorScheme }) => {
+export const generateScripts = ({ colorScheme, user, locale, customAttributes }) => {
   let script = '';
   if (user) {
     const userObject = {
@@ -47,17 +47,11 @@ export const generateScripts = ({ colorScheme, user, locale, customAttributes, a
     script += createWootPostMessage(attributeObject);
   }
   if (colorScheme) {
-    const isDarkMode = colorScheme === 'dark' || 
-      (colorScheme === 'auto' && appColorScheme === 'dark');
-    const themeObject = { 
-      event: POST_MESSAGE_EVENTS.SET_COLOR_SCHEME, 
-      darkMode: isDarkMode 
-    };
+    const themeObject = { event: POST_MESSAGE_EVENTS.SET_COLOR_SCHEME, darkMode: colorScheme };
     script += createWootPostMessage(themeObject);
   }
   return script;
 };
-
 export const storeHelper = {
   getCookie: async () => {
     const cookie = await AsyncStorage.getItem('cwCookie');
